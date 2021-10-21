@@ -44,7 +44,7 @@ function ContactForm() {
           <input
             type="text"
             defaultValue={name}
-            onChange={handleChange}
+            onBlur={handleChange}
             name="name"
           />
         </div>
@@ -54,7 +54,7 @@ function ContactForm() {
             type="email"
             defaultValue={email}
             name="email"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
         </div>
         <div>
@@ -63,7 +63,7 @@ function ContactForm() {
             name="message"
             defaultValue={message}
             rows="5"
-            onChange={handleChange}
+            onBlur={handleChange}
           />
           {errorMessage && (
             <div>
