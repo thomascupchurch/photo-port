@@ -1,7 +1,8 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Nav from "..";
+import Contact from "..";
+import ContactForm from "..";
 
 const categories = [
   { name: "portraits", description: "Portraits of people in my life" },
@@ -13,11 +14,10 @@ const mockSetContactSelected = jest.fn();
 
 afterEach(cleanup);
 
-describe("Nav component", () => {
-  // baseline test
+describe("Contact component", () => {
   it("renders", () => {
     render(
-      <Nav
+      <Contact
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
@@ -26,10 +26,11 @@ describe("Nav component", () => {
       />
     );
   });
+
   // snapshot test
   it("matches snapshot", () => {
     const { asFragment } = render(
-      <Nav
+      <Contact
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
@@ -41,28 +42,11 @@ describe("Nav component", () => {
   });
 });
 
-describe("emoji is visible", () => {
-  it("inserts emoji into the h2", () => {
-    // Arrange
-    const { getByLabelText } = render(
-      <Nav
-        categories={categories}
-        setCurrentCategory={mockSetCurrentCategory}
-        currentCategory={mockCurrentCategory}
-        contactSelected={mockContactSelected}
-        setContactSelected={mockSetContactSelected}
-      />
-    );
-    // Assert
-    expect(getByLabelText("camera")).toHaveTextContent("📸");
-  });
-});
-
-describe("links are visible", () => {
-  it("inserts text into the links", () => {
-    // Arrange
+// test contactForm
+describe("contactForm is rendering properly", () => {
+  it("shows contactForm rendered properly", () => {
     const { getByTestId } = render(
-      <Nav
+      <ContactForm
         categories={categories}
         setCurrentCategory={mockSetCurrentCategory}
         currentCategory={mockCurrentCategory}
@@ -70,8 +54,7 @@ describe("links are visible", () => {
         setContactSelected={mockSetContactSelected}
       />
     );
-    expect(getByTestId("link")).toHaveTextContent("Oh Snap!");
-    expect(getByTestId("about")).toHaveTextContent("About me");
     // Assert
+    expect(getByTestId("contact")).toHaveTextContent("Contact me");
   });
 });
