@@ -58,3 +58,21 @@ describe("contactForm is rendering properly", () => {
     expect(getByTestId("contact")).toHaveTextContent("Contact me");
   });
 });
+
+// test button
+describe("button is working", () => {
+  it("responds correctly when clicked", () => {
+    const { getByTestId } = render(
+      <Button
+        categories={categories}
+        setCurrentCategory={mockSetCurrentCategory}
+        currentCategory={mockCurrentCategory}
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected}
+      />
+    )
+     // Assert
+     expect(getByTestId("submit")).toHaveTextContent("Submit");
+    });
+  })
+   
